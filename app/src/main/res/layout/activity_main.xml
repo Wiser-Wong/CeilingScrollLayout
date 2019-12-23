@@ -22,8 +22,8 @@
         <com.wiser.ceiling.CeilingScrollLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cl_layoutId="@id/ll_ceiling"
-            app:cl_oLayoutId="@id/ll_o_ceiling">
+            app:csl_layoutId="@id/ll_ceiling"
+            app:csl_oLayoutId="@id/ll_o_ceiling">
 
             <LinearLayout
                 android:layout_width="match_parent"

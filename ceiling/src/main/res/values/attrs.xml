@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CeilingScrollLayout">
-        <attr name="cl_layoutId" format="reference"/>
-        <attr name="cl_oLayoutId" format="reference"/>
+        <attr name="csl_layoutId" format="reference"/>
+        <attr name="csl_oLayoutId" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="CeilingRecycleView">
