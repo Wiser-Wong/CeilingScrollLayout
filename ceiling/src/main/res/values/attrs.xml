@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CeilingScrollLayout">
+        <attr name="cl_layoutId" format="reference"/>
+        <attr name="cl_oLayoutId" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="CeilingRecycleView">
+        <attr name="crv_headerId" format="reference"/>
+        <attr name="crv_divider_height" format="integer"/>
+        <attr name="crv_divider_color" format="color"/>
+    </declare-styleable>
+</resources>
