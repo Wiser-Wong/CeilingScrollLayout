@@ -13,11 +13,11 @@ NestedScrollView吸顶控件
       }
 
         dependencies {
-              implementation 'com.github.Wiser-Wong:CeilingScrollLayout:1.0.0'
+              implementation 'com.github.Wiser-Wong:CeilingScrollLayout:1.1.0'
       }
       
 ## 使用说明
 
 ### CeilingScrollLayout
-* csl_layoutId : 原布局展示ID
-* csl_oLayoutId : 吸顶布局展示ID
+* csl_layoutId : 吸顶布局展示ID
+* csl_oLayoutId : 原布局展示ID
