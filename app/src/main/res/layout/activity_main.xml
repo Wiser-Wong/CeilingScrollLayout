@@ -38,7 +38,7 @@
                     android:scaleType="fitXY"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_ceiling"
+                    android:id="@+id/ll_o_ceiling"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -67,7 +67,7 @@
         </com.wiser.ceiling.CeilingScrollLayout>
 
         <LinearLayout
-            android:id="@+id/ll_o_ceiling"
+            android:id="@+id/ll_ceiling"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible">

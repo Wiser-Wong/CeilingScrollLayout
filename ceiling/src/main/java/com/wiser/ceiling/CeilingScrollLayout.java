@@ -11,64 +11,79 @@ import androidx.core.widget.NestedScrollView;
 
 /**
  * @author Wiser
- *
- *         吸顶布局
+ * <p>
+ * NestedScrollView吸顶布局
  */
 public class CeilingScrollLayout extends NestedScrollView implements NestedScrollView.OnScrollChangeListener {
 
-	private int		ceilingLayoutId, oCeilingLayoutId;
+    private int ceilingLayoutId, oCeilingLayoutId;
 
-	private View	ceilingView, oCeilingView;
+    private View ceilingView, oCeilingView;
 
-	private int		ceilingHeight;
+    private int ceilingHeight;
 
-	public CeilingScrollLayout(@NonNull Context context) {
-		super(context);
-		init(context, null);
-	}
+    private boolean isCeilingRunning;
 
-	public CeilingScrollLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
-		super(context, attrs);
-		init(context, attrs);
-	}
+    public CeilingScrollLayout(@NonNull Context context) {
+        super(context);
+        init(context, null);
+    }
 
-	public CeilingScrollLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-		init(context, attrs);
-	}
+    public CeilingScrollLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
 
-	private void init(Context context, AttributeSet attrs) {
+    public CeilingScrollLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
 
-		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CeilingScrollLayout);
-		if (attrs != null) {
-			ceilingLayoutId = ta.getResourceId(R.styleable.CeilingScrollLayout_cl_layoutId, -1);
-			oCeilingLayoutId = ta.getResourceId(R.styleable.CeilingScrollLayout_cl_oLayoutId, -1);
-		}
-		ta.recycle();
+    private void init(Context context, AttributeSet attrs) {
 
-		setOnScrollChangeListener(this);
-	}
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CeilingScrollLayout);
+        if (attrs != null) {
+            ceilingLayoutId = ta.getResourceId(R.styleable.CeilingScrollLayout_csl_layoutId, -1);
+            oCeilingLayoutId = ta.getResourceId(R.styleable.CeilingScrollLayout_csl_oLayoutId, -1);
+        }
+        ta.recycle();
 
-	@Override public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-		if (ceilingView != null && oCeilingView != null) {
-			if (scrollY >= ceilingHeight) {
-				if (ceilingView.getVisibility() == View.VISIBLE) ceilingView.setVisibility(View.INVISIBLE);
-				if (oCeilingView.getVisibility() == View.INVISIBLE) oCeilingView.setVisibility(View.VISIBLE);
-			} else {
-				if (ceilingView.getVisibility() == View.INVISIBLE) ceilingView.setVisibility(View.VISIBLE);
-				if (oCeilingView.getVisibility() == VISIBLE) oCeilingView.setVisibility(View.INVISIBLE);
-			}
-		}
-	}
+        setOnScrollChangeListener(this);
+    }
 
-	@Override public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		if (hasWindowFocus) {
-			if (ceilingLayoutId != -1) ceilingView = findViewById(ceilingLayoutId);
-			if (oCeilingLayoutId != -1 && getRootView() != null) oCeilingView = getRootView().findViewById(oCeilingLayoutId);
-			if (ceilingView != null) {
-				ceilingHeight = ceilingView.getTop();
-			}
-		}
-	}
+    public boolean isCeilingRunning() {
+        return isCeilingRunning;
+    }
+
+    @Override
+    public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        if (ceilingView != null && oCeilingView != null) {
+            if (scrollY >= ceilingHeight) {
+                isCeilingRunning = true;
+                if (oCeilingView.getVisibility() == View.VISIBLE)
+                    oCeilingView.setVisibility(View.INVISIBLE);
+                if (ceilingView.getVisibility() == View.INVISIBLE)
+                    ceilingView.setVisibility(View.VISIBLE);
+            } else {
+                isCeilingRunning = false;
+                if (oCeilingView.getVisibility() == View.INVISIBLE)
+                    oCeilingView.setVisibility(View.VISIBLE);
+                if (ceilingView.getVisibility() == VISIBLE)
+                    ceilingView.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) {
+            if (oCeilingLayoutId != -1) oCeilingView = findViewById(oCeilingLayoutId);
+            if (ceilingLayoutId != -1 && getRootView() != null)
+                ceilingView = getRootView().findViewById(ceilingLayoutId);
+            if (oCeilingView != null) {
+                ceilingHeight = oCeilingView.getTop();
+            }
+        }
+    }
 }
