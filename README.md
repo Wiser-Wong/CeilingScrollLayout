@@ -1,5 +1,5 @@
 # CeilingScrollLayout
-NestedScrollView吸顶控件
+NestedScrollView吸顶控件，通过两个相同布局来实现吸顶效果
 
 # 截图
 ![images](https://github.com/Wiser-Wong/CeilingScrollLayout/blob/master/images/ceiling.gif)
